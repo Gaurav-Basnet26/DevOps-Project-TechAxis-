@@ -15,20 +15,29 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
+                echo 'Installing dependencies...'
                 sh 'npm install'
             }
         }
 
         stage('Build') {
             steps {
-                echo 'Building application...'
+                echo 'Building Docker image...'
                 sh 'docker build -t devops-app .'
             }
         }
 
         stage('Test') {
             steps {
+                echo 'Running tests...'
                 sh 'npm test'
+            }
+        }
+
+        stage('Trigger CD') {
+            steps {
+                echo 'CI successful. Triggering CD pipeline...'
+                build job: 'devops-project-techaxis-cd', wait: false
             }
         }
     }
