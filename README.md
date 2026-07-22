@@ -6,7 +6,7 @@ This project demonstrates the implementation of a complete DevOps workflow for a
 
 The project uses Git and GitHub for version control, Docker for containerization, Docker Compose for multi-container orchestration, Nginx as a reverse proxy, and Jenkins for implementing a CI/CD pipeline.
 
-The CI and CD processes are separated into two Jenkins pipelines:
+
 
 - **CI Pipeline** – Builds and tests the application and creates the Docker image.
 - **CD Pipeline** – Automatically deploys the Docker image after the CI pipeline completes successfully.
@@ -61,12 +61,12 @@ The main branches used are:
 
 - `main` – Production-ready code
 - `develop` – Development integration branch
-- `feature/api` – Feature development branch
+- `feature` – Feature development branch
 
 The development workflow is:
 
 ```text
-feature/api
+feature
      │
      ▼
   develop
@@ -271,7 +271,7 @@ Running Docker Container
 The CI pipeline is defined in:
 
 ```text
-Jenkinsfile.ci
+Jenkinsfile.build
 ```
 
 The CI pipeline performs the following stages:
@@ -310,7 +310,7 @@ npm test
 The CD pipeline is defined in:
 
 ```text
-Jenkinsfile.cd
+Jenkinsfile.Deploy
 ```
 
 The CD pipeline is responsible for deploying the application.
@@ -498,7 +498,11 @@ The following screenshots can be included as evidence of the project implementat
 11. Application running successfully after deployment
 
 ---
+## Acknowledgements 
+
+README.md was created on the basics of project wokflow in collaboration with an Ai Assistant
+
 
 ## Author
 
-**Gaurav Basnet**
+**Gaurav Basnet** 
