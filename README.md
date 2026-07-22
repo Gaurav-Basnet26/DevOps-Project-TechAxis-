@@ -499,16 +499,6 @@ The following screenshots can be included as evidence of the project implementat
 
 ---
 
-# Conclusion
-
-This project demonstrates a complete DevOps workflow using version control, containerization, orchestration, reverse proxy configuration, and automated CI/CD.
-
-The workflow separates Continuous Integration and Continuous Deployment into two Jenkins pipelines. The CI pipeline builds and tests the application and creates a Docker image. After successful completion, the CD pipeline is automatically triggered to deploy the application.
-
-This approach demonstrates how DevOps practices can automate the software development and deployment lifecycle.
-
----
-
 ## Author
 
 **Gaurav Basnet**
