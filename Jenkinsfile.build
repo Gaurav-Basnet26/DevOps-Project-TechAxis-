@@ -9,16 +9,12 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                echo 'Checking out source code...'
                 checkout scm
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                echo 'Installing dependencies...'
-                sh 'node --version'
-                sh 'npm --version'
                 sh 'npm install'
             }
         }
@@ -26,36 +22,24 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building application...'
-                sh 'echo "Build Successful"'
+                sh 'docker build -t devops-app .'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Running tests...'
                 sh 'npm test'
-            }
-        }
-
-        stage('Docker Build') {
-            steps {
-                echo 'Building Docker image...'
-                sh 'docker build -t devops-app .'
             }
         }
     }
 
     post {
         success {
-            echo 'Pipeline executed successfully!'
+            echo 'CI pipeline completed successfully!'
         }
 
         failure {
-            echo 'Pipeline failed!'
-        }
-
-        always {
-            echo 'Pipeline execution completed.'
+            echo 'CI pipeline failed!'
         }
     }
 }

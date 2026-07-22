@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+
+    environment {
+        PATH = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                    docker stop devops-container || true
+                    docker rm devops-container || true
+
+                    docker run -d \
+                        --name devops-container \
+                        -p 3002:3001 \
+                        devops-app
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'CD deployment completed successfully!'
+        }
+
+        failure {
+            echo 'CD deployment failed!'
+        }
+    }
+}
